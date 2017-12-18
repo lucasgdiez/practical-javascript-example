@@ -1,0 +1,61 @@
+{
+  "name": "underpants",
+  "version": "0.1.2",
+  "description": "The first thing you put on the morning, a uxdev-oriented seed with the bleeding edge tech and a component based mindset",
+  "engines": {
+    "node": ">=7",
+    "npm": ">=4"
+  },
+  "scripts": {
+    "scss": "node-sass-chokidar --recursive src/scss --output dist/css --output-style compressed",
+    "autoprefix": "postcss -u autoprefixer --autoprefixer.browsers \">; 5%, ie 11\" -r dist/css/*",
+    "uglify": "uglifyjs src/js/*.js -m -o dist/js/bundle.js && uglifyjs src/js/*.js -m -c -o dist/js/bundle.min.js",
+    "imagemin": "imagemin src/images/** --out-dir=dist/images",
+    "svgo": "svgo -f src/svg -o dist/svg",
+    "serve": "browser-sync start --startPath \"dist/\" --server --files \"dist/css/*.css, dist/js/*.js, dist/*.html\"",
+    "lint": "eslint src/js/**",
+    "build:html": "htmlprocessor index.html -o dist/index.html -r",
+    "build:css": "run-s scss autoprefix",
+    "build:js": "run-s lint uglify",
+    "build:images": "run-p imagemin",
+    "prebuild": "mkdirp dist/css dist/js dist/images dist/svg",
+    "build": "run-p build:*",
+    "watch:html": "nodemon --watch index.html --watch src/templates/ -e html -x \"npm run build:html\"",
+    "watch:css": "nodemon --watch src/scss/ -e scss -x \"npm run build:css\"",
+    "watch:js": "nodemon --watch src/js/ -e js -x \"npm run build:js\"",
+    "watch": "run-p watch:* serve",
+    "prestart": "npm run build",
+    "start": "npm run watch"
+  },
+  "devDependencies": {
+    "autoprefixer": "^7.1.6",
+    "browser-sync": "^2.18.13",
+    "eslint": "^4.12.0",
+    "htmlprocessor": "^0.2.6",
+    "imagemin-cli": "^3.0.0",
+    "mkdirp": "^0.5.1",
+    "node-sass": "^4.7.2",
+    "node-sass-chokidar": "0.0.3",
+    "nodemon": "^1.12.1",
+    "npm-run-all": "^4.1.2",
+    "postcss-cli": "^4.1.1",
+    "svgo": "^1.0.3",
+    "uglify-js": "^3.2.0"
+  },
+  "keywords": [
+    "framework",
+    "components",
+    "web",
+    "seed",
+    "sass",
+    "processhtml"
+  ],
+  "author": "Franco Arza",
+  "contributors": [
+    {
+      "name": "Matias Beckerle",
+      "url": "https://github.com/matiasbeckerle"
+    }
+  ],
+  "license": "MIT"
+}

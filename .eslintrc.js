@@ -9,13 +9,14 @@ module.exports = {
     "sourceType": "module"
   },
   "rules": {
+  	"no-console":0,
     "indent": [
       1,
       2
     ],
     "linebreak-style": [
       1,
-      "unix"
+      "windows"
     ],
     "quotes": [
       1,
@@ -24,6 +25,6 @@ module.exports = {
     "semi": [
       1,
       "always"
-    ]
+    ],
   }
 };

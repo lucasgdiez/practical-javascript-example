@@ -1,3 +1,8 @@
+//v5 req 
+//displayTodo should show todoText
+//displayTodo should tell you if todos[] is empty
+//displayTodo should show completed
+
 var todoList = {
   todos: [],
   displayTodos: function () {

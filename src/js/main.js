@@ -1,12 +1,23 @@
 //v5 req 
-//displayTodo should show todoText
-//displayTodo should tell you if todos[] is empty
-//displayTodo should show completed
+//displayTodo should show todoText - done
+//displayTodo should tell you if todos[] is empty - done
+//displayTodo should show completed - done
 
 var todoList = {
   todos: [],
   displayTodos: function () {
-    console.log("My todos", this.todos);
+    if (this.todos.length === 0) {
+      console.log("Your todo list is empty!");
+    } else {
+        console.log("My todos: ");
+        for(var i = 0; i < this.todos.length; i++) {
+          if(this.todos[i].completed === true) {
+            console.log(this.todos[i].todoText, "(x)");
+          } else {
+            console.log(this.todos[i].todoText, "()");
+          }
+        }
+      }  
   },
   addTodo: function(todoText) {
     this.todos.push({

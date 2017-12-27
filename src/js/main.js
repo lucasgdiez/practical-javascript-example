@@ -1,7 +1,6 @@
-//v5 req 
-//displayTodo should show todoText - done
-//displayTodo should tell you if todos[] is empty - done
-//displayTodo should show completed - done
+//v6 req 
+//make method toggleAll => if everything true => make everything false - done
+//^otherwise make everything false
 
 var todoList = {
   todos: [],
@@ -38,6 +37,25 @@ var todoList = {
     var todo = this.todos[index];
     todo.completed = !todo.completed;
     this.displayTodos();
+  },
+  toggleAll: function() {
+    var totalTodos = this.todos.length;
+    var completedTodos = 0;
+
+    //checks completed todos, if true increments counter of completedTodos by 1
+    for(var i = 0; i < totalTodos; i++) {
+      if(this.todos[i].completed === true) {
+        completedTodos++;
+      }
+    }
+
+    //checks if the length of completedTodos equals the total of todos
+    if(completedTodos === totalTodos) {
+      for(var d = 0; d < totalTodos; d++) {
+        this.todos[d].completed = false;
+      }
+    this.displayTodos();
+    }
   }
 };
 

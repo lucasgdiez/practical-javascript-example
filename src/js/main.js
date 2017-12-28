@@ -1,6 +1,6 @@
 //v6 req 
 //make method toggleAll => if everything true => make everything false - done
-//^otherwise make everything false
+//^otherwise make everything false - done
 
 var todoList = {
   todos: [],
@@ -51,11 +51,15 @@ var todoList = {
 
     //checks if the length of completedTodos equals the total of todos
     if(completedTodos === totalTodos) {
-      for(var d = 0; d < totalTodos; d++) {
-        this.todos[d].completed = false;
+      for(var index = 0; index < totalTodos; index++) {
+        this.todos[index].completed = false;
       }
-    this.displayTodos();
+    } else {
+        for(var position = 0; position < totalTodos; position++) {
+          this.todos[position].completed = true;
+        }
     }
+    this.displayTodos();
   }
 };
 

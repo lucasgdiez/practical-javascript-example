@@ -1,6 +1,8 @@
-//v6 req 
-//make method toggleAll => if everything true => make everything false - done
-//^otherwise make everything false - done
+//v7 req 
+//adding some ui stuff heck yeah!!
+//create display todos button
+//create toggle all button
+//attach methods to the buttons 
 
 var todoList = {
   todos: [],
@@ -51,10 +53,12 @@ var todoList = {
 
     //checks if the length of completedTodos equals the total of todos
     if(completedTodos === totalTodos) {
+      //goes through every item in totalTodos.completed and makes them false
       for(var index = 0; index < totalTodos; index++) {
         this.todos[index].completed = false;
       }
     } else {
+        //goes through every item in totalTodos.completed and makes them true
         for(var position = 0; position < totalTodos; position++) {
           this.todos[position].completed = true;
         }

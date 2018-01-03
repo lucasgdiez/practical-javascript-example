@@ -1,8 +1,8 @@
 //v7 req 
 //adding some ui stuff heck yeah!!
-//create display todos button
-//create toggle all button
-//attach methods to the buttons 
+//create display todos button - done
+//create toggle all button - done
+//attach methods to the buttons - done
 
 var todoList = {
   todos: [],
@@ -50,7 +50,6 @@ var todoList = {
         completedTodos++;
       }
     }
-
     //checks if the length of completedTodos equals the total of todos
     if(completedTodos === totalTodos) {
       //goes through every item in totalTodos.completed and makes them false
@@ -67,4 +66,22 @@ var todoList = {
   }
 };
 
-console.log(todoList);
+//Methods attachment:
+//1 get access to displayTodosButton/toggleAllButton 
+//by reference with the getElementById method
+
+var displayTodosButton = document.getElementById('displayTodosButton');
+var toggleAllButton = document.getElementById('displayToggleAllButton');
+
+//2 create an event listener
+//so when it gets clicked, run the displayTodos/toggleAll method created above
+ 
+displayTodosButton.addEventListener('click', function() {
+  todoList.displayTodos();
+}); 
+
+toggleAllButton.addEventListener('click', function() {
+  todoList.toggleAll();
+})
+
+console.log('test', todoList);

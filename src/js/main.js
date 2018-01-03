@@ -1,8 +1,9 @@
-//v7 req 
-//adding some ui stuff heck yeah!!
-//create display todos button - done
-//create toggle all button - done
-//attach methods to the buttons - done
+//v8 req 
+// every respective method should have it's own button/input field
+// add todo: input text / button - done
+// change todo: input position / input text  - done
+// delete todo: button - done
+// toggle completed: button - done
 
 var todoList = {
   todos: [],
@@ -37,6 +38,7 @@ var todoList = {
   },
   toggleCompleted: function(index) {
     var todo = this.todos[index];
+
     todo.completed = !todo.completed;
     this.displayTodos();
   },
@@ -66,22 +68,45 @@ var todoList = {
   }
 };
 
-//Methods attachment:
-//1 get access to displayTodosButton/toggleAllButton 
-//by reference with the getElementById method
+var handlers = {
+  displayTodos: function() {
+    todoList.displayTodos();
+  },
+  addTodo: function() {
+    var todoText = document.getElementById('addTodoTextInput');
+    
+    todoList.addTodo(todoText.value);
 
-var displayTodosButton = document.getElementById('displayTodosButton');
-var toggleAllButton = document.getElementById('displayToggleAllButton');
+    todoText.value = '';
+  },
+  changeTodo: function () {
+    var changeTodoPositionInput = document.getElementById('changeTodoPositionInput');
+    var changeTodoTextInput = document.getElementById('changeTodoTextInput');
 
-//2 create an event listener
-//so when it gets clicked, run the displayTodos/toggleAll method created above
- 
-displayTodosButton.addEventListener('click', function() {
-  todoList.displayTodos();
-}); 
+    todoList.changeTodo(changeTodoPositionInput.valueAsNumber, changeTodoTextInput.value);
+    
+    changeTodoPositionInput.value = '';
+    changeTodoTextInput.value = '';
+  },
+  deleteTodo: function() {
+    var deleteTodoPositionInput = document.getElementById('deleteTodoPositionInput');
+   
+    todoList.deleteTodo(deleteTodoPositionInput.valueAsNumber);
 
-toggleAllButton.addEventListener('click', function() {
-  todoList.toggleAll();
-});
+    deleteTodoPositionInput.value = '';
+  },
+  toggleCompleted: function() {
+    var toggleCompletedTodoPosition = document.getElementById('toggleCompletedTodoPosition');
 
+    todoList.toggleCompleted(toggleCompletedTodoPosition.valueAsNumber);
+  
+    toggleCompletedTodoPosition.value = '';
+  },
+  toggleAll: function() {
+    todoList.toggleAll();
+  }
+};
+
+//eslint doesn't let you compile if you're not using the variables declared
 console.log('test', todoList);
+console.log(handlers);

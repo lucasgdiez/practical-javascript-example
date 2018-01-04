@@ -9,13 +9,14 @@
   <!-- le jankiest div ever, dont do this, will change later in the course :) -->
   <div class="wrapper">
     <div>
-      <button onclick="handlers.displayTodos()">Display Todos</button>
       <button onclick="handlers.toggleAll()">Toggle All</button>
     </div>
 
     <div>
+      <form action="">
       <button onclick="handlers.addTodo()">Add Todo</button>
-      <input id="addTodoTextInput" type="text">
+      <input id="addTodoTextInput" type="text" required>
+    </form>
     </div>
 
     <div>
@@ -33,6 +34,14 @@
       <button onclick="handlers.toggleCompleted()">Toggle Completed</button>
       <input id="toggleCompletedTodoPosition" type="number">
     </div>
+
+    <p>
+
+    </p>
+     
+    <ul> 
+    </ul>
+
   </div>
 </body>
 </html>

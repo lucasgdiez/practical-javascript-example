@@ -1,3 +1,47 @@
-<p>
-  Hi! I'm the main content replacement, and this means htmlprocessor is working fine. Congrats!
-</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+</head>
+<body>
+  <!-- le jankiest div ever, dont do this, will change later in the course :) -->
+  <div class="wrapper">
+    <div>
+      <button onclick="handlers.toggleAll()">Toggle All</button>
+    </div>
+
+    <div>
+      <form action="">
+      <button onclick="handlers.addTodo()">Add Todo</button>
+      <input id="addTodoTextInput" type="text" required>
+    </form>
+    </div>
+
+    <div>
+      <button onclick="handlers.changeTodo()">Change Todo</button>
+      <input id="changeTodoPositionInput" type="number">
+      <input id="changeTodoTextInput" type="text">
+    </div>
+
+    <div>
+      <button onclick="handlers.deleteTodo()">Delete</button>
+      <input id="deleteTodoPositionInput" type="number">
+    </div>
+  
+    <div>
+      <button onclick="handlers.toggleCompleted()">Toggle Completed</button>
+      <input id="toggleCompletedTodoPosition" type="number">
+    </div>
+
+    <p>
+
+    </p>
+     
+    <ul> 
+    </ul>
+
+  </div>
+</body>
+</html>

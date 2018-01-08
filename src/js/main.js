@@ -1,7 +1,10 @@
-//v9 req
-//create an li element for every todo - done
-//each li element should contain todoText property - done 
-//each li element should display if its completed or not - done
+//v10 req
+
+//there should be a way to create delete buttons
+//every todo should have a delete button next to them
+//each li needs to have an id that stores the todo position
+//delete button should have access to the position mentioned above
+//clickin the delete button should update the todoList.todos array and update the DOM
 
 //FIX
 //ADD TODO ADDS ANYWAY IF THERE'S NOTHING ON IT HES CRAZY
@@ -122,7 +125,7 @@ var view = {
       var todosLi = document.createElement('li');
       //if statement checks false/true of items printing status of said item + text
       
-      //wip bug creates li element with () even tho theres todoText
+      //BUG DISABLE BUTTON IF NO CHARACTERS IN FIELD
       if (todoList.todos[i].completed === false) {
         todosLi.textContent = '() ' + todoList.todos[i].todoText;
       } else {

@@ -131,8 +131,15 @@ var view = {
       } else {
         todosLi.textContent = '(x) ' + todoList.todos[i].todoText;
       }
+      todosLi.appendChild(this.createDeleteButton());
       todosUl.appendChild(todosLi);
-    }
+     }
+    },
+    createDeleteButton: function () {
+      var deleteButton = document.createElement('button');
+      deleteButton.textContent = 'Delete';
+
+      return deleteButton;
   }
 };
 

@@ -1,10 +1,10 @@
 //v10 req
 
-//there should be a way to create delete buttons
-//every todo should have a delete button next to them
-//each li needs to have an id that stores the todo position
-//delete button should have access to the position mentioned above
-//clickin the delete button should update the todoList.todos array and update the DOM
+//there should be a way to create delete buttons - done
+//every todo should have a delete button next to them - done
+//each li needs to have an id that stores the todo position - done 
+//delete button should have access to the position mentioned above - done
+//clickin the delete button should update the todoList.todos array and update the DOM - done
 
 //FIX
 //ADD TODO ADDS ANYWAY IF THERE'S NOTHING ON IT HES CRAZY
@@ -75,13 +75,10 @@ var handlers = {
 
     view.displayTodos();
   },
-  deleteTodo: function() {
+  deleteTodo: function(position) {
     handlers.checkListStatus();
-    var deleteTodoPositionInput = document.getElementById('deleteTodoPositionInput');
-   
-    todoList.deleteTodo(deleteTodoPositionInput.valueAsNumber);
 
-    deleteTodoPositionInput.value = '';
+    todoList.deleteTodo(position);
 
     view.displayTodos();
   },
@@ -131,10 +128,35 @@ var view = {
       } else {
         todosLi.textContent = '(x) ' + todoList.todos[i].todoText;
       }
+
+      todosLi.id = i;
+      todosLi.appendChild(this.createDeleteButton());
       todosUl.appendChild(todosLi);
     }
+  },
+  createDeleteButton: function() {
+    var deleteButton = document.createElement('button');
+    
+    deleteButton.textContent = 'Delete';
+    deleteButton.className = 'delete-button';
+    
+    return deleteButton;
+  },
+  setUpEventListeners: function() {
+    var todosUl = document.querySelector('ul');
+
+    todosUl.addEventListener('click', function(event) {
+      var elementClicked = event.target;
+
+      if(elementClicked.className === 'delete-button') {
+        handlers.deleteTodo(parseInt(elementClicked.parentNode.id));
+      }
+    });
   }
 };
+
+view.setUpEventListeners();
+
 
 //eslint doesn't let you compile if you're not using the variables declared
 console.log('test', todoList);

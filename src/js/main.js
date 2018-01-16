@@ -1,10 +1,7 @@
 //v10 req
 
-//there should be a way to create delete buttons - done
-//every todo should have a delete button next to them - done
-//each li needs to have an id that stores the todo position - done 
-//delete button should have access to the position mentioned above - done
-//clickin the delete button should update the todoList.todos array and update the DOM - done
+//todoList.toggleAll should use forEach
+//view.displayTodos should use forEach
 
 //FIX
 //ADD TODO ADDS ANYWAY IF THERE'S NOTHING ON IT HES CRAZY
@@ -32,23 +29,26 @@ var todoList = {
     var totalTodos = this.todos.length;
     var completedTodos = 0;
 
-    //checks completed todos, if true increments counter of completedTodos by 1
-    for(var i = 0; i < totalTodos; i++) {
-      if(this.todos[i].completed === true) {
+    //checks completed todos, if true increments counter completedTodos by 1
+    //in a refined way :emojiwithglasses:
+
+    this.todos.forEach(function(todo) {
+      if(todo.completed === true) {
         completedTodos++;
       }
-    }
+    });
+
     //checks if the length of completedTodos equals the total of todos
     if(completedTodos === totalTodos) {
       //goes through every item in totalTodos.completed and makes them false
-      for(var index = 0; index < totalTodos; index++) {
-        this.todos[index].completed = false;
-      }
+      this.todos.forEach(function(todo) {
+        todo.completed = false;
+      })
     } else {
+      this.todos.forEach(function(todo) {
         //goes through every item in totalTodos.completed and makes them true
-        for(var position = 0; position < totalTodos; position++) {
-          this.todos[position].completed = true;
-        }
+        todo.completed = true;
+      })
     }
   }
 };

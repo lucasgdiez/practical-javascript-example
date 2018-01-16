@@ -1,6 +1,6 @@
 //v10 req
 
-//todoList.toggleAll should use forEach
+//todoList.toggleAll should use forEach - done
 //view.displayTodos should use forEach
 
 //FIX

@@ -1,7 +1,7 @@
 //v10 req
 
 //todoList.toggleAll should use forEach - done
-//view.displayTodos should use forEach
+//view.displayTodos should use forEach - done
 
 //FIX
 //ADD TODO ADDS ANYWAY IF THERE'S NOTHING ON IT HES CRAZY
@@ -118,21 +118,21 @@ var view = {
     todosUl.innerHTML = '';
     //goes through every todo inside the array and creates a new li
     //and appends it to the ul
-    for(var i = 0; i < todoList.todos.length; i++) {
+    todoList.todos.forEach(function(todo, position) {
       var todosLi = document.createElement('li');
       //if statement checks false/true of items printing status of said item + text
       
       //BUG DISABLE BUTTON IF NO CHARACTERS IN FIELD
-      if (todoList.todos[i].completed === false) {
-        todosLi.textContent = '() ' + todoList.todos[i].todoText;
+      if (todo.completed === false) {
+        todosLi.textContent = '() ' + todo.todoText;
       } else {
-        todosLi.textContent = '(x) ' + todoList.todos[i].todoText;
+        todosLi.textContent = '(x) ' + todo.todoText;
       }
 
-      todosLi.id = i;
+      todosLi.id = position;
       todosLi.appendChild(this.createDeleteButton());
       todosUl.appendChild(todosLi);
-    }
+    }, this)
   },
   createDeleteButton: function() {
     var deleteButton = document.createElement('button');

@@ -1,9 +1,22 @@
 # practical-javascript-example
-This contains code from the course Practical Javascript made by https://watchandcode.com
+this contains code from the course Practical Javascript made by https://watchandcode.com
 
 framework made by https://github.com/arzafran/underpants :)
 
+## get it on your pc:
 
-19/01/2018 Update:
+install node/npm and git if you don't have it
 
-Course still in development, will get updated when new stuff arrives to the page!
+git clone https://github.com/lucasgdiez/practical-javascript-example.git
+
+cd practical-javascript-example
+
+npm install (get some tea)
+npm start 
+
+and off you go!
+(framework's commands can be found at the package.json)
+
+### 19/01/2018 Update:
+
+course still in development, will get updated when new stuff arrives to the page!

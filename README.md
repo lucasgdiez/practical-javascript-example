@@ -12,6 +12,7 @@ git clone https://github.com/lucasgdiez/practical-javascript-example.git
 cd practical-javascript-example
 
 npm install (get some tea)
+
 npm start 
 
 and off you go!

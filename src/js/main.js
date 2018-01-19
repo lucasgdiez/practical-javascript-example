@@ -1,7 +1,7 @@
-//v9 req
-//create an li element for every todo - done
-//each li element should contain todoText property - done 
-//each li element should display if its completed or not - done
+//v10 req
+
+//todoList.toggleAll should use forEach - done
+//view.displayTodos should use forEach - done
 
 //FIX
 //ADD TODO ADDS ANYWAY IF THERE'S NOTHING ON IT HES CRAZY
@@ -29,23 +29,26 @@ var todoList = {
     var totalTodos = this.todos.length;
     var completedTodos = 0;
 
-    //checks completed todos, if true increments counter of completedTodos by 1
-    for(var i = 0; i < totalTodos; i++) {
-      if(this.todos[i].completed === true) {
+    //checks completed todos, if true increments counter completedTodos by 1
+    //in a refined way :emojiwithglasses:
+
+    this.todos.forEach(function(todo) {
+      if(todo.completed === true) {
         completedTodos++;
       }
-    }
+    });
+
     //checks if the length of completedTodos equals the total of todos
     if(completedTodos === totalTodos) {
       //goes through every item in totalTodos.completed and makes them false
-      for(var index = 0; index < totalTodos; index++) {
-        this.todos[index].completed = false;
-      }
+      this.todos.forEach(function(todo) {
+        todo.completed = false;
+      })
     } else {
+      this.todos.forEach(function(todo) {
         //goes through every item in totalTodos.completed and makes them true
-        for(var position = 0; position < totalTodos; position++) {
-          this.todos[position].completed = true;
-        }
+        todo.completed = true;
+      })
     }
   }
 };
@@ -72,13 +75,10 @@ var handlers = {
 
     view.displayTodos();
   },
-  deleteTodo: function() {
+  deleteTodo: function(position) {
     handlers.checkListStatus();
-    var deleteTodoPositionInput = document.getElementById('deleteTodoPositionInput');
-   
-    todoList.deleteTodo(deleteTodoPositionInput.valueAsNumber);
 
-    deleteTodoPositionInput.value = '';
+    todoList.deleteTodo(position);
 
     view.displayTodos();
   },
@@ -118,20 +118,45 @@ var view = {
     todosUl.innerHTML = '';
     //goes through every todo inside the array and creates a new li
     //and appends it to the ul
-    for(var i = 0; i < todoList.todos.length; i++) {
+    todoList.todos.forEach(function(todo, position) {
       var todosLi = document.createElement('li');
       //if statement checks false/true of items printing status of said item + text
       
-      //wip bug creates li element with () even tho theres todoText
-      if (todoList.todos[i].completed === false) {
-        todosLi.textContent = '() ' + todoList.todos[i].todoText;
+      //BUG DISABLE BUTTON IF NO CHARACTERS IN FIELD
+      if (todo.completed === false) {
+        todosLi.textContent = '() ' + todo.todoText;
       } else {
-        todosLi.textContent = '(x) ' + todoList.todos[i].todoText;
+        todosLi.textContent = '(x) ' + todo.todoText;
       }
+
+      todosLi.id = position;
+      todosLi.appendChild(this.createDeleteButton());
       todosUl.appendChild(todosLi);
-    }
+    }, this)
+  },
+  createDeleteButton: function() {
+    var deleteButton = document.createElement('button');
+    
+    deleteButton.textContent = 'Delete';
+    deleteButton.className = 'delete-button';
+    
+    return deleteButton;
+  },
+  setUpEventListeners: function() {
+    var todosUl = document.querySelector('ul');
+
+    todosUl.addEventListener('click', function(event) {
+      var elementClicked = event.target;
+
+      if(elementClicked.className === 'delete-button') {
+        handlers.deleteTodo(parseInt(elementClicked.parentNode.id));
+      }
+    });
   }
 };
+
+view.setUpEventListeners();
+
 
 //eslint doesn't let you compile if you're not using the variables declared
 console.log('test', todoList);
